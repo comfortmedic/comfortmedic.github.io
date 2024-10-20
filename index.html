@@ -149,20 +149,22 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         $(document).ready(function() {
-            $('#pagepiling').pagepiling({
-                menu: 'nav',
-                direction: 'vertical',
-                verticalCentered: true,
-                navigation: {
-                    'position': 'right'
-                },
-                afterRender: function() {
-                    $('nav a').on('click', function() {
-                        const target = $(this).attr('href').replace('#', '');
-                        $.fn.pagepiling.moveTo(target);
-                    });
-                }
-            });
+            if ($(window).width() > 768) {
+                $('#pagepiling').pagepiling({
+                    menu: 'nav',
+                    direction: 'vertical',
+                    verticalCentered: true,
+                    navigation: {
+                        'position': 'right'
+                    },
+                    afterRender: function() {
+                        $('nav a').on('click', function() {
+                            const target = $(this).attr('href').replace('#', '');
+                            $.fn.pagepiling.moveTo(target);
+                        });
+                    }
+                });
+            }
         });
     </script>
 </body>
