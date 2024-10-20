@@ -217,6 +217,9 @@
                 anchors: ['hero', 'about', 'services', 'howItWorks', 'footer'], // Section anchors for easier reference
                 navigationTooltips: ['Hero', 'About Us', 'Services', 'How It Works', 'Footer'],
                 showActiveTooltip: true,
+                scrollOverflow: true, // Enable scroll overflow for sections with more content
+                fitToSection: true, // Ensures each section fits into the viewport
+                fitToSectionDelay: 1000, // Delay before fitting to section to ensure smoothness
             });
         });
     </script>
