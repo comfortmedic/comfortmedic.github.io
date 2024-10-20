@@ -219,7 +219,10 @@
                 showActiveTooltip: true,
                 scrollOverflow: true, // Enable scroll overflow for sections with more content
                 fitToSection: true, // Ensures each section fits into the viewport
-                fitToSectionDelay: 1000, // Delay before fitting to section to ensure smoothness
+                fitToSectionDelay: 500, // Reduce delay to minimize skipping issues
+                afterLoad: function(origin, destination, direction) {
+                    console.log('Loaded section:', destination.anchor); // Debugging to check section loading
+                },
             });
         });
     </script>
