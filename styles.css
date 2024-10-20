@@ -1,4 +1,9 @@
 /* Custom CSS for ComfortMedic Landing Page */
+html, body {
+            scroll-behavior: smooth;
+            overflow-y: auto;
+        }
+
 
 .hero {
     background: url('https://example.com/your-image.jpg') center/cover no-repeat;
