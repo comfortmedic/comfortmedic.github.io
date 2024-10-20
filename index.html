@@ -20,7 +20,7 @@
             box-sizing: border-box;
             opacity: 0;
             transform: translateY(50px);
-            transition: all 1s ease-out;
+            transition: opacity 1s ease, transform 1s ease;
         }
         .active .section {
             opacity: 1;
@@ -99,7 +99,7 @@
     <div id="pagepiling">
         <div id="home" class="section">
             <!-- Home Section -->
-            <div class="container h-100 d-flex flex-column justify-content-center align-items-center">
+            <div class="container h-100 d-flex flex-column justify-content-center align-items-center reveal">
                 <h1 class="display-3 font-weight-bold">Comfort Medic</h1>
                 <p class="lead">Domiciliary Care - Bringing Compassionate Medical Services to Your Home</p>
                 <a href="#services" class="btn btn-primary btn-lg mt-4">Learn More</a>
@@ -108,7 +108,7 @@
 
         <!-- About Us Section -->
         <div id="about" class="section">
-            <div class="container py-5">
+            <div class="container py-5 reveal">
                 <h2>About Comfort Medic</h2>
                 <p>At Comfort Medic, we are committed to providing high-quality, personalized medical care in the comfort of your home. Our experienced healthcare professionals are dedicated to delivering exceptional care, focusing on your comfort and well-being.</p>
             </div>
@@ -116,7 +116,7 @@
 
         <!-- Services Section -->
         <div id="services" class="section">
-            <div class="container py-5">
+            <div class="container py-5 reveal">
                 <h2>Our Services</h2>
                 <div class="row mt-4">
                     <div class="col-md-4 col-12 mb-4">
@@ -140,7 +140,7 @@
 
         <!-- Contact Section -->
         <div id="contact" class="section">
-            <div class="container py-5">
+            <div class="container py-5 reveal">
                 <h2>Contact Us</h2>
                 <p>Have questions or need to schedule a visit? Get in touch with us today!</p>
                 <div class="mt-4">
@@ -172,16 +172,25 @@
                         });
                     },
                     afterLoad: function(anchorLink, index) {
-                        $('.pp-section.active .section').addClass('animate');
+                        $('.pp-section.active .reveal').css({
+                            'opacity': '1',
+                            'transform': 'translateY(0)'
+                        });
                     }
                 });
             } else {
                 // Enable normal scrolling for mobile devices
                 $('body, html').css('overflow-y', 'auto');
                 $('#pagepiling').children().css('height', '100vh');
-                $('.section').css({
-                    'opacity': '1',
-                    'transform': 'translateY(0)'
+                $(window).on('scroll', function() {
+                    $('.section').each(function() {
+                        if ($(this).offset().top < $(window).scrollTop() + $(window).height() - 100) {
+                            $(this).find('.reveal').css({
+                                'opacity': '1',
+                                'transform': 'translateY(0)'
+                            });
+                        }
+                    });
                 });
             }
         });
