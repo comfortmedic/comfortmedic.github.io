@@ -20,11 +20,6 @@
             box-sizing: border-box;
             opacity: 0;
             transform: translateY(50px);
-            transition: opacity 1s ease, transform 1s ease;
-        }
-        .active .section {
-            opacity: 1;
-            transform: translateY(0);
         }
         #home {
             background: #f8f9fa;
@@ -165,12 +160,6 @@
                     navigation: {
                         'position': 'right'
                     },
-                    afterRender: function() {
-                        $('nav a').on('click', function() {
-                            const target = $(this).attr('href').replace('#', '');
-                            $.fn.pagepiling.moveTo(target);
-                        });
-                    },
                     afterLoad: function(anchorLink, index) {
                         $('.pp-section.active .reveal').css({
                             'opacity': '1',
@@ -185,7 +174,7 @@
                 $(window).on('scroll', function() {
                     $('.section').each(function() {
                         if ($(this).offset().top < $(window).scrollTop() + $(window).height() - 100) {
-                            $(this).find('.reveal').css({
+                            $(this).css({
                                 'opacity': '1',
                                 'transform': 'translateY(0)'
                             });
