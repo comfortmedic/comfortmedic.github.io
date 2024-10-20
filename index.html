@@ -5,16 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Comfort Medic - Home Visit Medical Service</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         .section {
             text-align: center;
             color: white;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
         #home {
-            
-            
             color: #000;
         }
         #about, #services, #contact {
@@ -23,77 +25,98 @@
         #about h2, #services h2, #contact h2, #about p, #services p, #contact p {
             color: #ffffff;
         }
+        html, body {
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.8);
+        }
+        nav a {
+            color: #ffffff;
+            padding: 15px;
+            text-decoration: none;
+        }
+        nav a:hover {
+            background: #007bff;
+            color: #fff;
+        }
     </style>
 </head>
 <body>
-    <div id="fullpage">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#home">Comfort Medic</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div id="home" class="section">
         <!-- Home Section -->
-        <div class="section" id="home">
-            <div class="container h-100 d-flex flex-column justify-content-center align-items-center">
-                <h1 class="display-3 font-weight-bold">Comfort Medic</h1>
-                <p class="lead">Domiciliary Care - Bringing Compassionate Medical Services to Your Home</p>
-                <a href="#services" class="btn btn-primary btn-lg mt-4">Learn More</a>
-            </div>
+        <div class="container h-100 d-flex flex-column justify-content-center align-items-center">
+            <h1 class="display-3 font-weight-bold">Comfort Medic</h1>
+            <p class="lead">Domiciliary Care - Bringing Compassionate Medical Services to Your Home</p>
+            <a href="#services" class="btn btn-primary btn-lg mt-4">Learn More</a>
         </div>
+    </div>
 
-        <!-- About Us Section -->
-        <div class="section" id="about">
-            <div class="container py-5">
-                <h2>About Comfort Medic</h2>
-                <p>At Comfort Medic, we are committed to providing high-quality, personalized medical care in the comfort of your home. Our experienced healthcare professionals are dedicated to delivering exceptional care, focusing on your comfort and well-being.</p>
-            </div>
+    <!-- About Us Section -->
+    <div id="about" class="section">
+        <div class="container py-5">
+            <h2>About Comfort Medic</h2>
+            <p>At Comfort Medic, we are committed to providing high-quality, personalized medical care in the comfort of your home. Our experienced healthcare professionals are dedicated to delivering exceptional care, focusing on your comfort and well-being.</p>
         </div>
+    </div>
 
-        <!-- Services Section -->
-        <div class="section" id="services">
-            <div class="container py-5">
-                <h2>Our Services</h2>
-                <div class="row mt-4">
-                    <div class="col-md-4">
-                        <i class="fas fa-user-md fa-3x mb-3"></i>
-                        <h4>Medical Consultations</h4>
-                        <p>Our doctors are available to provide medical consultations at your home, offering personalized treatment and support.</p>
-                    </div>
-                    <div class="col-md-4">
-                        <i class="fas fa-briefcase-medical fa-3x mb-3"></i>
-                        <h4>Medication Management</h4>
-                        <p>We help you manage your medication, ensuring proper dosage and adherence to treatment plans for optimal health.</p>
-                    </div>
-                    <div class="col-md-4">
-                        <i class="fas fa-heartbeat fa-3x mb-3"></i>
-                        <h4>Palliative Care</h4>
-                        <p>Our compassionate palliative care services focus on improving quality of life, providing comfort, and supporting families during challenging times.</p>
-                    </div>
+    <!-- Services Section -->
+    <div id="services" class="section">
+        <div class="container py-5">
+            <h2>Our Services</h2>
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <i class="fas fa-user-md fa-3x mb-3"></i>
+                    <h4>Medical Consultations</h4>
+                    <p>Our doctors are available to provide medical consultations at your home, offering personalized treatment and support.</p>
+                </div>
+                <div class="col-md-4">
+                    <i class="fas fa-briefcase-medical fa-3x mb-3"></i>
+                    <h4>Medication Management</h4>
+                    <p>We help you manage your medication, ensuring proper dosage and adherence to treatment plans for optimal health.</p>
+                </div>
+                <div class="col-md-4">
+                    <i class="fas fa-heartbeat fa-3x mb-3"></i>
+                    <h4>Palliative Care</h4>
+                    <p>Our compassionate palliative care services focus on improving quality of life, providing comfort, and supporting families during challenging times.</p>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Contact Section -->
-        <div class="section" id="contact">
-            <div class="container py-5">
-                <h2>Contact Us</h2>
-                <p>Have questions or need to schedule a visit? Get in touch with us today!</p>
-                <div class="mt-4">
-                    <a href="tel:+1234567890" class="btn btn-info btn-lg mr-2"><i class="fas fa-phone-alt"></i> Call Us</a>
-                    <a href="mailto:info@comfort.medic.ac" class="btn btn-warning btn-lg"><i class="fas fa-envelope"></i> Email Us</a>
-                </div>
+    <!-- Contact Section -->
+    <div id="contact" class="section">
+        <div class="container py-5">
+            <h2>Contact Us</h2>
+            <p>Have questions or need to schedule a visit? Get in touch with us today!</p>
+            <div class="mt-4">
+                <a href="tel:+1234567890" class="btn btn-info btn-lg mr-2"><i class="fas fa-phone-alt"></i> Call Us</a>
+                <a href="mailto:info@comfort.medic.ac" class="btn btn-warning btn-lg"><i class="fas fa-envelope"></i> Email Us</a>
             </div>
         </div>
     </div>
 
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/3.1.2/fullpage.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            new fullpage('#fullpage', {
-                anchors: ['home', 'about', 'services', 'contact'],
-                navigation: true,
-                navigationPosition: 'right',
-                responsiveWidth: 768
-            });
-        });
-    </script>
 </body>
 </html>
