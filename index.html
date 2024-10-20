@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pagePiling.js/1.5.6/jquery.pagepiling.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <style>
         .section {
             text-align: center;
@@ -19,8 +20,6 @@
             padding: 20px;
             box-sizing: border-box;
             opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 1s ease, transform 1s ease;
         }
         #home {
             background: #f8f9fa;
@@ -93,9 +92,9 @@
     </nav>
 
     <div id="pagepiling">
-        <div id="home" class="section">
+        <div id="home" class="section animate__animated">
             <!-- Home Section -->
-            <div class="container h-100 d-flex flex-column justify-content-center align-items-center reveal">
+            <div class="container h-100 d-flex flex-column justify-content-center align-items-center">
                 <h1 class="display-3 font-weight-bold">Comfort Medic</h1>
                 <p class="lead">Domiciliary Care - Bringing Compassionate Medical Services to Your Home</p>
                 <a href="#services" class="btn btn-primary btn-lg mt-4">Learn More</a>
@@ -103,16 +102,16 @@
         </div>
 
         <!-- About Us Section -->
-        <div id="about" class="section">
-            <div class="container py-5 reveal">
+        <div id="about" class="section animate__animated">
+            <div class="container py-5">
                 <h2>About Comfort Medic</h2>
                 <p>At Comfort Medic, we are committed to providing high-quality, personalized medical care in the comfort of your home. Our experienced healthcare professionals are dedicated to delivering exceptional care, focusing on your comfort and well-being.</p>
             </div>
         </div>
 
         <!-- Services Section -->
-        <div id="services" class="section">
-            <div class="container py-5 reveal">
+        <div id="services" class="section animate__animated">
+            <div class="container py-5">
                 <h2>Our Services</h2>
                 <div class="row mt-4">
                     <div class="col-md-4 col-12 mb-4">
@@ -135,8 +134,8 @@
         </div>
 
         <!-- Contact Section -->
-        <div id="contact" class="section">
-            <div class="container py-5 reveal">
+        <div id="contact" class="section animate__animated">
+            <div class="container py-5">
                 <h2>Contact Us</h2>
                 <p>Have questions or need to schedule a visit? Get in touch with us today!</p>
                 <div class="mt-4">
@@ -162,29 +161,23 @@
                         'position': 'right'
                     },
                     afterLoad: function(anchorLink, index) {
-                        $('.pp-section.active .reveal').addClass('animate');
+                        // Add animation classes to the currently active section
+                        var activeSection = $('.pp-section.active');
+                        activeSection.addClass('animate__fadeIn');
+                        activeSection.css('opacity', 1);
+                    },
+                    afterRender: function() {
+                        $('nav a').on('click', function() {
+                            const target = $(this).attr('href').replace('#', '');
+                            $.fn.pagepiling.moveTo(target);
+                        });
                     }
                 });
             } else {
                 // Enable normal scrolling for mobile devices
                 $('body, html').css('overflow-y', 'auto');
                 $('#pagepiling').children().css('height', '100vh');
-                $(window).on('scroll', function() {
-                    $('.section').each(function() {
-                        if ($(this).offset().top < $(window).scrollTop() + $(window).height() - 100) {
-                            $(this).addClass('animate');
-                        }
-                    });
-                });
             }
-
-            // Adding animation class when revealed
-            $('.reveal').on('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function() {
-                $(this).css({
-                    'opacity': '1',
-                    'transform': 'translateY(0)'
-                });
-            });
         });
     </script>
 </body>
