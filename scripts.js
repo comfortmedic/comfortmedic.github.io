@@ -1,20 +1,13 @@
 $(document).ready(function() {
-    // Smooth scroll to services section
-    $('a[href="#services"]').click(function(e) {
-        e.preventDefault();
-        $('html, body').animate({
-            scrollTop: $($.attr(this, 'href')).offset().top
-        }, 500);
-    });
+    // Disable normal scrolling
+    $('body').css('overflow', 'hidden');
 
     // Full page scroll behavior
     let sections = $('section');
     let currentIndex = 0;
 
     $(window).on('wheel', function(e) {
-        if ($('html, body').is(':animated')) {
-            return;
-        }
+        e.preventDefault();
 
         if (e.originalEvent.deltaY > 0) {
             // Scroll down
@@ -28,8 +21,6 @@ $(document).ready(function() {
             }
         }
 
-        $('html, body').animate({
-            scrollTop: $(sections[currentIndex]).offset().top
-        }, 800);
+        $('html, body').scrollTop($(sections[currentIndex]).offset().top);
     });
 });
