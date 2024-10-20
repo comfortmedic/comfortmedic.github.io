@@ -16,6 +16,8 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
         }
         #home {
             background: #f8f9fa;
@@ -47,16 +49,23 @@
             background: #007bff;
             color: #fff;
         }
-        @media (max-width: 768px) { $1.section { min-height: 100vh; padding: 50px 20px; }
-            #home, #about, #services, #contact {
-                padding-top: 100px;
+        @media (max-width: 768px) {
+            .navbar-collapse {
+                text-align: center;
+            }
+            .section {
+                min-height: 100vh;
+                padding: 100px 20px;
             }
             h1.display-3 {
-                font-size: 2.5rem;
+                font-size: 2rem;
             }
             .btn-lg {
                 font-size: 1rem;
                 padding: 10px 20px;
+            }
+            nav a {
+                padding: 10px;
             }
         }
     </style>
