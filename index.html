@@ -99,7 +99,7 @@
 </head>
 <body>
     <!-- Floating Navigation Arrows -->
-    <div class="navigate-arrow navigate-arrow-up" id="arrowUp"><i class="fas fa-chevron-up"></i> <span id="upText"></span></div>
+    <div class="navigate-arrow navigate-arrow-up" id="arrowUp" style="display: none;"><i class="fas fa-chevron-up"></i> <span id="upText"></span></div>
     <div class="navigate-arrow navigate-arrow-down" id="arrowDown"><i class="fas fa-chevron-down"></i> <span id="downText"></span></div>
 
     <div id="pagepiling">
@@ -171,6 +171,12 @@
                     'position': 'right'
                 },
                 afterLoad: function(anchorLink, index) {
+                    // Hide the up arrow on the first section
+                    if (index === 1) {
+                        $('#arrowUp').hide();
+                    } else {
+                        $('#arrowUp').show();
+                    }
                     // Add animation classes to the currently active section
                     var activeSection = $('.pp-section.active');
                     activeSection.addClass('animate__fadeIn');
