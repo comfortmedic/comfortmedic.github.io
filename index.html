@@ -36,26 +36,24 @@
             scroll-behavior: smooth;
             height: 100%;
         }
-        nav {
+        .navigate-arrow {
             position: fixed;
-            top: 0;
-            width: 100%;
             z-index: 1000;
-            background: rgba(0, 0, 0, 0.8);
-        }
-        nav a {
             color: #ffffff;
-            padding: 15px;
-            text-decoration: none;
+            font-size: 2rem;
+            cursor: pointer;
         }
-        nav a:hover {
-            background: #007bff;
-            color: #fff;
+        .navigate-arrow-up {
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .navigate-arrow-down {
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
         }
         @media (max-width: 768px) {
-            .navbar-collapse {
-                text-align: center;
-            }
             .section {
                 height: 100vh;
                 padding: 10px;
@@ -73,9 +71,6 @@
             .btn-lg {
                 font-size: 0.9rem;
                 padding: 8px 16px;
-            }
-            nav a {
-                padding: 10px;
             }
             h2 {
                 font-size: 1.5rem;
@@ -95,59 +90,12 @@
                 padding-bottom: 20px !important;
             }
         }
-            .section {
-                height: 100vh;
-                padding: 50px 10px;
-            }
-            .container {
-                max-width: 100%;
-                width: 100%;
-            }
-            h1.display-3 {
-                font-size: 1.5rem;
-            }
-            p.lead {
-                font-size: 1rem;
-            }
-            .btn-lg {
-                font-size: 0.9rem;
-                padding: 8px 16px;
-            }
-            nav a {
-                padding: 10px;
-            }
-            h2 {
-                font-size: 1.5rem;
-            }
-            .col-md-4 i {
-                font-size: 2.5rem;
-            }
-            .col-md-4 h4 {
-                font-size: 1.2rem;
-            }
-            .col-md-4 p {
-                font-size: 0.9rem;
-            }
-        }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container">
-            <a class="navbar-brand" href="#home">Comfort Medic</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <!-- Floating Navigation Arrows -->
+    <div class="navigate-arrow navigate-arrow-up" id="arrowUp"><i class="fas fa-chevron-up"></i></div>
+    <div class="navigate-arrow navigate-arrow-down" id="arrowDown"><i class="fas fa-chevron-down"></i></div>
 
     <div id="pagepiling">
         <div id="home" class="section animate__animated animate__fadeIn" style="opacity: 1;">
@@ -211,7 +159,7 @@
     <script>
         $(document).ready(function() {
             $('#pagepiling').pagepiling({
-                menu: 'nav',
+                menu: null,
                 direction: 'vertical',
                 verticalCentered: true,
                 navigation: {
@@ -224,13 +172,17 @@
                     activeSection.css('opacity', 1);
                 },
                 afterRender: function() {
-                    $('nav a').on('click', function() {
-                        const target = $(this).attr('href').replace('#', '');
-                        $.fn.pagepiling.moveTo(target);
-                    });
                     // Automatically animate the first section on load
                     $('#home').css('opacity', 1).addClass('animate__fadeIn');
                 }
+            });
+
+            // Floating arrows for navigation
+            $('#arrowUp').click(function() {
+                $.fn.pagepiling.moveSectionUp();
+            });
+            $('#arrowDown').click(function() {
+                $.fn.pagepiling.moveSectionDown();
             });
         });
     </script>
