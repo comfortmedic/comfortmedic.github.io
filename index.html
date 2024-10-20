@@ -197,6 +197,8 @@
                     $('#downText').text(index < sectionNames.length ? sectionNames[index] : '');
                 },
                 afterRender: function() {
+                    // Set initial down arrow text for navigation
+                    $('#downText').text('About');
                     // Automatically animate the first section on load
                     $('#home').css('opacity', 1).addClass('animate__fadeIn');
                 }
