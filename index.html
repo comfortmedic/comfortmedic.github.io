@@ -18,6 +18,13 @@
             align-items: center;
             padding: 20px;
             box-sizing: border-box;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 1s ease-out;
+        }
+        .active .section {
+            opacity: 1;
+            transform: translateY(0);
         }
         #home {
             background: #f8f9fa;
@@ -163,12 +170,19 @@
                             const target = $(this).attr('href').replace('#', '');
                             $.fn.pagepiling.moveTo(target);
                         });
+                    },
+                    afterLoad: function(anchorLink, index) {
+                        $('.pp-section.active .section').addClass('animate');
                     }
                 });
             } else {
                 // Enable normal scrolling for mobile devices
                 $('body, html').css('overflow-y', 'auto');
                 $('#pagepiling').children().css('height', '100vh');
+                $('.section').css({
+                    'opacity': '1',
+                    'transform': 'translateY(0)'
+                });
             }
         });
     </script>
