@@ -39,9 +39,10 @@
         .navigate-arrow {
             position: fixed;
             z-index: 1000;
-            color: #ffffff;
             font-size: 2rem;
             cursor: pointer;
+            display: flex;
+            align-items: center;
         }
         .navigate-arrow-up {
             top: 20px;
@@ -52,6 +53,10 @@
             bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
+        }
+        .navigate-arrow span {
+            margin-left: 10px;
+            font-size: 1rem;
         }
         @media (max-width: 768px) {
             .section {
@@ -94,8 +99,8 @@
 </head>
 <body>
     <!-- Floating Navigation Arrows -->
-    <div class="navigate-arrow navigate-arrow-up" id="arrowUp"><i class="fas fa-chevron-up"></i></div>
-    <div class="navigate-arrow navigate-arrow-down" id="arrowDown"><i class="fas fa-chevron-down"></i></div>
+    <div class="navigate-arrow navigate-arrow-up" id="arrowUp"><i class="fas fa-chevron-up"></i> <span id="upText"></span></div>
+    <div class="navigate-arrow navigate-arrow-down" id="arrowDown"><i class="fas fa-chevron-down"></i> <span id="downText"></span></div>
 
     <div id="pagepiling">
         <div id="home" class="section animate__animated animate__fadeIn" style="opacity: 1;">
@@ -170,6 +175,20 @@
                     var activeSection = $('.pp-section.active');
                     activeSection.addClass('animate__fadeIn');
                     activeSection.css('opacity', 1);
+
+                    // Set arrow color and text based on the background
+                    var currentSection = $('#pagepiling').children().eq(index - 1);
+                    var isDarkBackground = currentSection.css('background-color') === 'rgb(59, 59, 59)';
+                    if (isDarkBackground) {
+                        $('.navigate-arrow').css('color', '#ffffff');
+                    } else {
+                        $('.navigate-arrow').css('color', '#000000');
+                    }
+
+                    // Update arrow text for navigation
+                    var sectionNames = ['Home', 'About', 'Services', 'Contact'];
+                    $('#upText').text(index > 1 ? sectionNames[index - 2] : '');
+                    $('#downText').text(index < sectionNames.length ? sectionNames[index] : '');
                 },
                 afterRender: function() {
                     // Automatically animate the first section on load
@@ -178,13 +197,4 @@
             });
 
             // Floating arrows for navigation
-            $('#arrowUp').click(function() {
-                $.fn.pagepiling.moveSectionUp();
-            });
-            $('#arrowDown').click(function() {
-                $.fn.pagepiling.moveSectionDown();
-            });
-        });
-    </script>
-</body>
-</html>
+           
