@@ -11,7 +11,7 @@
         .section {
             text-align: center;
             color: white;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -47,14 +47,7 @@
             background: #007bff;
             color: #fff;
         }
-        @media (max-width: 768px) {
-            .navbar-collapse {
-                text-align: center;
-            }
-            .section {
-                height: auto;
-                padding: 50px 20px;
-            }
+        @media (max-width: 768px) { $1.section { min-height: 100vh; padding: 50px 20px; }
             #home, #about, #services, #contact {
                 padding-top: 100px;
             }
