@@ -164,6 +164,10 @@
                         });
                     }
                 });
+            } else {
+                // Enable normal scrolling for mobile devices
+                $('body, html').css('overflow-y', 'auto');
+                $('#pagepiling').children().css('min-height', 'auto');
             }
         });
     </script>
