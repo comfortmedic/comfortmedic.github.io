@@ -177,6 +177,22 @@
                     } else {
                         $('#arrowUp').show();
                     }
+                    // Hide or replace the down arrow on the last section
+                    if (index === $('#pagepiling').children().length) {
+                        $('#arrowDown').hide();
+                        $('#arrowDown').replaceWith('<div class="navigate-arrow navigate-arrow-down" id="toTop"><i class="fas fa-chevron-up"></i> <span>Top</span></div>');
+                        $('#toTop').click(function() {
+                            $.fn.pagepiling.moveTo(1);
+                        });
+                    } else {
+                        $('#arrowDown').show();
+                    }
+                    // Hide the up arrow on the first section
+                    if (index === 1) {
+                        $('#arrowUp').hide();
+                    } else {
+                        $('#arrowUp').show();
+                    }
                     // Add animation classes to the currently active section
                     var activeSection = $('.pp-section.active');
                     activeSection.addClass('animate__fadeIn');
