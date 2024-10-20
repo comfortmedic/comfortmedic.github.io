@@ -20,6 +20,7 @@
             box-sizing: border-box;
             opacity: 0;
             transform: translateY(50px);
+            transition: opacity 1s ease, transform 1s ease;
         }
         #home {
             background: #f8f9fa;
@@ -161,10 +162,7 @@
                         'position': 'right'
                     },
                     afterLoad: function(anchorLink, index) {
-                        $('.pp-section.active .reveal').css({
-                            'opacity': '1',
-                            'transform': 'translateY(0)'
-                        });
+                        $('.pp-section.active .reveal').addClass('animate');
                     }
                 });
             } else {
@@ -174,14 +172,19 @@
                 $(window).on('scroll', function() {
                     $('.section').each(function() {
                         if ($(this).offset().top < $(window).scrollTop() + $(window).height() - 100) {
-                            $(this).css({
-                                'opacity': '1',
-                                'transform': 'translateY(0)'
-                            });
+                            $(this).addClass('animate');
                         }
                     });
                 });
             }
+
+            // Adding animation class when revealed
+            $('.reveal').on('animationend webkitAnimationEnd oAnimationEnd MSAnimationEnd', function() {
+                $(this).css({
+                    'opacity': '1',
+                    'transform': 'translateY(0)'
+                });
+            });
         });
     </script>
 </body>
