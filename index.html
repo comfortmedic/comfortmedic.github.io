@@ -92,7 +92,7 @@
     </nav>
 
     <div id="pagepiling">
-        <div id="home" class="section animate__animated">
+        <div id="home" class="section animate__animated animate__fadeIn" style="opacity: 1;">
             <!-- Home Section -->
             <div class="container h-100 d-flex flex-column justify-content-center align-items-center">
                 <h1 class="display-3 font-weight-bold">Comfort Medic</h1>
@@ -152,32 +152,28 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         $(document).ready(function() {
-            if ($(window).width() > 768) {
-                $('#pagepiling').pagepiling({
-                    menu: 'nav',
-                    direction: 'vertical',
-                    verticalCentered: true,
-                    navigation: {
-                        'position': 'right'
-                    },
-                    afterLoad: function(anchorLink, index) {
-                        // Add animation classes to the currently active section
-                        var activeSection = $('.pp-section.active');
-                        activeSection.addClass('animate__fadeIn');
-                        activeSection.css('opacity', 1);
-                    },
-                    afterRender: function() {
-                        $('nav a').on('click', function() {
-                            const target = $(this).attr('href').replace('#', '');
-                            $.fn.pagepiling.moveTo(target);
-                        });
-                    }
-                });
-            } else {
-                // Enable normal scrolling for mobile devices
-                $('body, html').css('overflow-y', 'auto');
-                $('#pagepiling').children().css('height', '100vh');
-            }
+            $('#pagepiling').pagepiling({
+                menu: 'nav',
+                direction: 'vertical',
+                verticalCentered: true,
+                navigation: {
+                    'position': 'right'
+                },
+                afterLoad: function(anchorLink, index) {
+                    // Add animation classes to the currently active section
+                    var activeSection = $('.pp-section.active');
+                    activeSection.addClass('animate__fadeIn');
+                    activeSection.css('opacity', 1);
+                },
+                afterRender: function() {
+                    $('nav a').on('click', function() {
+                        const target = $(this).attr('href').replace('#', '');
+                        $.fn.pagepiling.moveTo(target);
+                    });
+                    // Automatically animate the first section on load
+                    $('#home').css('opacity', 1).addClass('animate__fadeIn');
+                }
+            });
         });
     </script>
 </body>
