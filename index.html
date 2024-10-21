@@ -180,16 +180,19 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         $(document).ready(function() {
+            const accessKey = 'YOUR_UNSPLASH_ACCESS_KEY';
             const unsplashUrls = {
-                home: 'https://source.unsplash.com/1600x900/?medical',
-                about: 'https://source.unsplash.com/1600x900/?healthcare',
-                services: 'https://source.unsplash.com/1600x900/?home-care',
-                contact: 'https://source.unsplash.com/1600x900/?contact'
+                home: 'https://api.unsplash.com/photos/random?query=medical&client_id=' + accessKey,
+                about: 'https://api.unsplash.com/photos/random?query=healthcare&client_id=' + accessKey,
+                services: 'https://api.unsplash.com/photos/random?query=home+care&client_id=' + accessKey,
+                contact: 'https://api.unsplash.com/photos/random?query=contact&client_id=' + accessKey
             };
 
-            // Load images from Unsplash public API
+            // Load images from Unsplash API
             function loadUnsplashImage(url, imageId) {
-                $('#' + imageId).attr('src', url);
+                $.get(url, function(data) {
+                    $('#' + imageId).attr('src', data.urls.regular);
+                });
             }
 
             loadUnsplashImage(unsplashUrls.home, 'homeImage');
@@ -204,4 +207,36 @@
                 navigation: {
                     'position': 'right'
                 },
-                afterLoad
+                afterLoad: function(anchorLink, index) {
+                    // Hide the up arrow on the first section
+                    if (index === 1) {
+                        $('#arrowUp').fadeOut(500);
+                    } else {
+                        $('#arrowUp').fadeIn(500);
+                    }
+                    // Hide or replace the down arrow on the last section
+                    if (index === $('#pagepiling').children().length) {
+                        $('#arrowDown').fadeOut(500, function() {
+                            $('#arrowDown').replaceWith('<div class="navigate-arrow navigate-arrow-down" id="toTop" style="opacity: 0;"><i class="fas fa-arrow-up"></i> <span>Top</span></div>');
+                            $('#toTop').animate({opacity: 1}, 500).click(function() {
+                                $.fn.pagepiling.moveTo(1);
+                                // Revert arrow functionality after scrolling to top
+                                $('#toTop').fadeOut(500, function() {
+                                    $('#toTop').replaceWith('<div class="navigate-arrow navigate-arrow-down" id="arrowDown" style="opacity: 0;"><i class="fas fa-chevron-down"></i> <span id="downText"></span></div>');
+                                    $('#arrowDown').animate({opacity: 1}, 500).click(function() {
+                                        $.fn.pagepiling.moveSectionDown();
+                                    });
+                                });
+                            });
+                        });
+                    } else {
+                        $('#arrowDown').fadeIn(500);
+                        // Reset arrow functionality when not on the last section
+                        if ($('#toTop').length) {
+                            $('#toTop').fadeOut(500, function() {
+                                $('#toTop').replaceWith('<div class="navigate-arrow navigate-arrow-down" id="arrowDown" style="opacity: 0;"><i class="fas fa-chevron-down"></i> <span id="downText"></span></div>');
+                                $('#arrowDown').animate({opacity: 1}, 500).click(function() {
+                                    $.fn.pagepiling.moveSectionDown();
+                                });
+                            });
+                       
