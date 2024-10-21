@@ -180,7 +180,7 @@
                     // Hide or replace the down arrow on the last section
                     if (index === $('#pagepiling').children().length) {
                         $('#arrowDown').hide();
-                        $('#arrowDown').replaceWith('<div class="navigate-arrow navigate-arrow-down" id="toTop"><i class="fas fa-chevron-up"></i> <span>Top</span></div>');
+                        $('#arrowDown').replaceWith('<div class="navigate-arrow navigate-arrow-down" id="toTop"><i class="fas fa-arrow-up"></i> <span>Top</span></div>');
                         $('#toTop').click(function() {
                             $.fn.pagepiling.moveTo(1);
                             // Revert arrow functionality after scrolling to top
