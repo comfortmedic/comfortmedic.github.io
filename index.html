@@ -20,7 +20,8 @@
             padding: 20px;
             box-sizing: border-box;
             opacity: 0;
-            transition: opacity 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            transform: translateY(50px);
+            transition: opacity 1s ease, transform 1s ease;
         }
         #home {
             background: #f8f9fa;
@@ -105,7 +106,7 @@
     <div class="navigate-arrow navigate-arrow-down" id="arrowDown" style="opacity: 1;"><i class="fas fa-chevron-down"></i> <span id="downText"></span></div>
 
     <div id="pagepiling">
-        <div id="home" class="section animate__animated animate__fadeIn" style="opacity: 1;">
+        <div id="home" class="section" style="opacity: 1; transform: translateY(0);">
             <!-- Home Section -->
             <div class="container h-100 d-flex flex-column justify-content-center align-items-center">
                 <h1 class="display-3 font-weight-bold">Comfort Medic</h1>
@@ -115,7 +116,7 @@
         </div>
 
         <!-- About Us Section -->
-        <div id="about" class="section animate__animated">
+        <div id="about" class="section">
             <div class="container py-5">
                 <h2>About Comfort Medic</h2>
                 <p>At Comfort Medic, we are committed to providing high-quality, personalized medical care in the comfort of your home. Our experienced healthcare professionals are dedicated to delivering exceptional care, focusing on your comfort and well-being.</p>
@@ -123,7 +124,7 @@
         </div>
 
         <!-- Services Section -->
-        <div id="services" class="section animate__animated">
+        <div id="services" class="section">
             <div class="container py-5">
                 <h2>Our Services</h2>
                 <div class="row mt-4">
@@ -147,7 +148,7 @@
         </div>
 
         <!-- Contact Section -->
-        <div id="contact" class="section animate__animated">
+        <div id="contact" class="section">
             <div class="container py-5">
                 <h2>Contact Us</h2>
                 <p>Have questions or need to schedule a visit? Get in touch with us today!</p>
@@ -209,7 +210,7 @@
                     // Add animation classes to the currently active section
                     var activeSection = $('.pp-section.active');
                     activeSection.addClass('animate__fadeIn');
-                    activeSection.css('opacity', 1);
+                    activeSection.css({'opacity': 1, 'transform': 'translateY(0)'});
 
                     // Set arrow color and text based on the background
                     var currentSection = $('#pagepiling').children().eq(index - 1);
@@ -229,7 +230,7 @@
                     // Set initial down arrow text for navigation
                     $('#downText').text('About');
                     // Automatically animate the first section on load
-                    $('#home').css('opacity', 1).addClass('animate__fadeIn');
+                    $('#home').css({'opacity': 1, 'transform': 'translateY(0)'});
                 }
             });
 
